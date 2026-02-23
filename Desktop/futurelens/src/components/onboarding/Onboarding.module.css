@@ -1,0 +1,660 @@
+/* ═══════════════════════════════════
+   ONBOARDING LAYOUT
+═══════════════════════════════════ */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.ambient {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 229, 255, 0.04);
+  top: -5%;
+  right: -5%;
+}
+
+.ambient2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(124, 77, 255, 0.04);
+  bottom: 10%;
+  left: -5%;
+}
+
+/* ═══════════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════════ */
+.progressWrapper {
+  width: 100%;
+  max-width: 680px;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.progressSteps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.progressLine {
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  right: 24px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.progressLineFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan-glow), var(--violet));
+  transition: width 0.5s ease;
+  border-radius: 2px;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+  cursor: default;
+}
+
+.stepDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: all 0.4s ease;
+}
+
+.stepDot.active {
+  border-color: var(--cyan-glow);
+  color: var(--cyan-glow);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+.stepDot.completed {
+  border-color: var(--cyan-glow);
+  background: var(--cyan-glow);
+  color: var(--bg-deep);
+}
+
+.stepLabel {
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stepLabel.active {
+  color: var(--cyan-glow);
+}
+
+/* ═══════════════════════════════════
+   FORM CARD
+═══════════════════════════════════ */
+.formCard {
+  width: 100%;
+  max-width: 680px;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  padding: 3rem;
+  animation: fadeUpIn 0.5s ease-out both;
+}
+
+.formHeader {
+  margin-bottom: 2.5rem;
+}
+
+.formIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--cyan-glow);
+}
+
+.formTitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.formSubtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════
+   FORM FIELDS
+═══════════════════════════════════ */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: var(--warm-white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:focus {
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.02);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.06);
+}
+
+.textarea {
+  composes: input;
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.select {
+  composes: input;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%237a8ba8' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.select option {
+  background: var(--bg-surface);
+  color: var(--warm-white);
+}
+
+/* ═══════════════════════════════════
+   VOICE RECORDER
+═══════════════════════════════════ */
+.voiceRecorder {
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.voiceHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.voiceHint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.voiceControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.recordBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 77, 77, 0.4);
+  background: rgba(255, 77, 77, 0.08);
+  color: #ff4d4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.recordBtn:hover {
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.15);
+  box-shadow: 0 0 16px rgba(255, 77, 77, 0.2);
+}
+
+.recordBtn.recording {
+  border-color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.2);
+  animation: recordPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes recordPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.3); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 77, 77, 0); }
+}
+
+.controlBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.controlBtn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--warm-white);
+}
+
+.voiceDuration {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--warm-white);
+  min-width: 50px;
+}
+
+.voiceStatus {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+.voiceStatus.recording {
+  color: #ff4d4d;
+}
+
+.audioPlayback {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.audioPlayback audio {
+  flex: 1;
+  height: 36px;
+  opacity: 0.7;
+}
+
+.resetBtn {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+}
+
+.resetBtn:hover {
+  color: var(--warm-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.voiceError {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #ff6b6b;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 77, 77, 0.06);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 77, 77, 0.12);
+}
+
+/* ═══════════════════════════════════
+   FILE UPLOAD
+═══════════════════════════════════ */
+.uploadZone {
+  border: 2px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.uploadZone:hover,
+.uploadZone.dragover {
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.02);
+}
+
+.uploadZone input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.uploadIcon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan-glow);
+}
+
+.uploadText {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.uploadText strong {
+  color: var(--cyan-glow);
+}
+
+.uploadHint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.fileIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(0, 229, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan-glow);
+  flex-shrink: 0;
+}
+
+.fileInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.fileName {
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileSize {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.fileRemove {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 77, 77, 0.08);
+  color: #ff6b6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.fileRemove:hover {
+  background: rgba(255, 77, 77, 0.15);
+}
+
+/* ═══════════════════════════════════
+   NAVIGATION BUTTONS
+═══════════════════════════════════ */
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backBtn:hover {
+  color: var(--warm-white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.nextBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.8rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--cyan-glow), var(--cyan-dim));
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.2);
+}
+
+.nextBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+}
+
+.nextBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.nextBtn svg {
+  transition: transform 0.3s ease;
+}
+
+.nextBtn:hover:not(:disabled) svg {
+  transform: translateX(2px);
+}
+
+.spacer {
+  width: 1px;
+}
+
+/* ═══════════════════════════════════
+   REVIEW SECTION
+═══════════════════════════════════ */
+.reviewGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.reviewSection {
+  padding: 1.25rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.reviewSectionTitle {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cyan-dim);
+  margin-bottom: 0.75rem;
+}
+
+.reviewItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.3rem 0;
+}
+
+.reviewLabel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.reviewValue {
+  font-size: 0.85rem;
+  color: var(--warm-white);
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}
+
+.reviewValue.empty {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════ */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.25rem;
+  }
+
+  .formCard {
+    padding: 2rem 1.5rem;
+    border-radius: 18px;
+  }
+
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+
+  .progressWrapper {
+    margin-top: 4.5rem;
+  }
+
+  .stepLabel {
+    display: none;
+  }
+
+  .formActions {
+    gap: 0.75rem;
+  }
+}

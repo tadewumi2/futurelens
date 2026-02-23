@@ -1,0 +1,113 @@
+.section {
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.ambient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(
+    ellipse,
+    rgba(0, 229, 255, 0.06),
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cyan-dim);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+/* Primary CTA — same as Hero */
+.btnPrimary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.2rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--cyan-glow), var(--cyan-dim));
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25),
+    0 4px 15px rgba(0, 229, 255, 0.15);
+  overflow: hidden;
+}
+
+.btnPrimary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  background: linear-gradient(135deg, var(--cyan-bright), var(--cyan-glow));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.btnPrimary:hover::before {
+  opacity: 1;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(0, 229, 255, 0.35),
+    0 8px 25px rgba(0, 229, 255, 0.2);
+}
+
+.btnPrimary span,
+.btnPrimary svg {
+  position: relative;
+  z-index: 1;
+}
+
+.btnPrimary svg {
+  transition: transform 0.3s ease;
+}
+
+.btnPrimary:hover svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 1.5rem;
+  }
+}

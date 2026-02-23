@@ -1,0 +1,365 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ambient {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(150px);
+  pointer-events: none;
+}
+
+.ambient1 {
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  left: -10%;
+  animation: ambientFloat 10s ease-in-out infinite alternate;
+}
+
+.ambient2 {
+  width: 400px;
+  height: 400px;
+  bottom: -10%;
+  right: -15%;
+  animation: ambientFloat 14s ease-in-out infinite alternate-reverse;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* ═══ AVATAR / PORTAL ═══ */
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.avatarRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
+
+.avatarRing.active {
+  animation: ringPulse 2s ease-in-out infinite;
+}
+
+.avatarRing:nth-child(2) {
+  inset: 8px;
+  animation-delay: 0.3s;
+}
+
+.avatarRing:nth-child(3) {
+  inset: 18px;
+  animation-delay: 0.6s;
+}
+
+@keyframes ringPulse {
+  0%, 100% { border-color: rgba(0, 229, 255, 0.15); transform: scale(1); }
+  50% { border-color: rgba(0, 229, 255, 0.35); transform: scale(1.03); }
+}
+
+.avatarCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.avatarCore.idle {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+.avatarCore.listening {
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  color: var(--cyan-glow);
+}
+
+.avatarCore.speaking {
+  background: rgba(124, 77, 255, 0.1);
+  border: 1px solid rgba(124, 77, 255, 0.25);
+  color: var(--violet);
+  animation: speakPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes speakPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* ═══ PERSONA INFO ═══ */
+.personaInfo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.personaName {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.personaTimeframe {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.callStatus {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.callStatus.active {
+  color: var(--cyan-glow);
+}
+
+/* ═══ WAVEFORM ═══ */
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 40px;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.waveform.visible {
+  opacity: 1;
+}
+
+.waveBar {
+  width: 3px;
+  border-radius: 3px;
+  transition: height 0.1s ease;
+  min-height: 4px;
+}
+
+/* ═══ TRANSCRIPT ═══ */
+.transcript {
+  width: 100%;
+  max-height: 280px;
+  overflow-y: auto;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.transcriptEntry {
+  margin-bottom: 0.75rem;
+  animation: fadeUpIn 0.3s ease-out both;
+}
+
+.transcriptRole {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.transcriptRole.user {
+  color: var(--cyan-glow);
+}
+
+.transcriptRole.assistant {
+  color: var(--violet);
+}
+
+.transcriptText {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* ═══ CONTROLS ═══ */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.callBtn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.callBtn.start {
+  background: linear-gradient(135deg, var(--cyan-glow), var(--cyan-dim));
+  color: var(--bg-deep);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+}
+
+.callBtn.start:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.35);
+}
+
+.callBtn.end {
+  background: linear-gradient(135deg, #ff4d4d, #cc3333);
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 77, 77, 0.25);
+}
+
+.callBtn.end:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 77, 77, 0.35);
+}
+
+.callBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.muteBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.muteBtn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--warm-white);
+}
+
+.muteBtn.muted {
+  border-color: rgba(255, 77, 77, 0.3);
+  background: rgba(255, 77, 77, 0.06);
+  color: #ff6b6b;
+}
+
+/* ═══ TIMER ═══ */
+.timer {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 60px;
+  text-align: center;
+}
+
+/* ═══ BACK LINK ═══ */
+.backLink {
+  position: fixed;
+  top: 1.5rem;
+  left: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  z-index: 10;
+  transition: color 0.3s ease;
+}
+
+.backLink:hover {
+  color: var(--text-secondary);
+}
+
+/* ═══ CONNECTION STATUS ═══ */
+.connectionDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+
+.connectionDot.connected {
+  background: #4caf50;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+}
+
+.connectionDot.disconnected {
+  background: #ff6b6b;
+}
+
+.connectionDot.connecting {
+  background: #ffb74d;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ═══ ERROR ═══ */
+.error {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 77, 77, 0.15);
+  background: rgba(255, 77, 77, 0.04);
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+  .transcript {
+    max-height: 200px;
+  }
+}
