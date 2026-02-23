@@ -1,0 +1,89 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(5, 8, 15, 0.95), transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: navSlideIn 1s ease-out 0.2s both;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--warm-white);
+}
+
+.lensIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--cyan-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+}
+
+.lensCore {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan-glow);
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: var(--cyan-glow);
+}
+
+.cta {
+  padding: 0.55rem 1.3rem;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  border-radius: 100px;
+  color: var(--cyan-glow) !important;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  background: rgba(0, 229, 255, 0.08);
+  border-color: var(--cyan-glow);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 1rem 1.25rem;
+  }
+  .links {
+    display: none;
+  }
+}
